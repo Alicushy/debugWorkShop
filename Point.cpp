@@ -1,5 +1,6 @@
-#include "Point.h"
+﻿#include "Point.h"
 #include <iostream>
+#include <cstring>
 
 Point::Point()
 {
@@ -16,7 +17,8 @@ Point::Point(int x, int y)
 
 Point::Point(const Point& other)
 {
-	// Fixed: Allocate new memory (Deep copy)
+	// FIX: Perform deep copy instead of shallow copy
+
 	_coord = new int[2];
 	_coord[0] = other._coord[0];
 	_coord[1] = other._coord[1];
@@ -24,17 +26,18 @@ Point::Point(const Point& other)
 
 Point::~Point()
 {
-	delete[] _coord;  // Fixed: delete[] instead of delete
+	delete[] _coord;  // Use delete[] for arrays
 }
 
 Point& Point::operator=(const Point& other)
 {
-	if (this != &other)  // Fixed: check for self-assignment
+	// Check for self-assignment
+	if (this != &other)
 	{
-		delete[] _coord;  // Fixed: delete[] instead of delete
+		delete[] _coord;  // Use delete[] for arrays
 		_coord = new int[2];
-		_coord[0] = other._coord[0];
-		_coord[1] = other._coord[1];
+		// FIX: Copy 2 integers (8 bytes), not 2 bytes
+		memcpy(_coord, other._coord, 2 * sizeof(int));
 	}
 	return *this;
 }
@@ -48,7 +51,6 @@ int Point::getY() const
 {
 	return _coord[1];
 }
-
 
 std::ostream& operator<<(std::ostream& os, const Point& p)
 {
