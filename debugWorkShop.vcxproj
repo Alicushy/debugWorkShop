@@ -119,11 +119,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="main.cpp" />
-    <ClCompile Include="Point.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="Point.h" />
+    <ClCompile Include="loop.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
